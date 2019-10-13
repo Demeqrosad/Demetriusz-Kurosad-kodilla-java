@@ -17,7 +17,8 @@ public class CollectionTestSuite
         System.out.println(myInfo[i] + "has started");
     }
     @After
-    public void after()    {
+    public void after()
+    {
         System.out.println(myInfo[i] + "has ended");
         i++;
     }
