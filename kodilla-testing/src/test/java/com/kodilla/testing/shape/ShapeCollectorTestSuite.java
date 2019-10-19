@@ -12,14 +12,17 @@ public class ShapeCollectorTestSuite
         ShapeCollector testCollector = new ShapeCollector();
         Shape myShape = new Triangle(3,4);
         boolean expResult = true;
-        boolean actResult;
+        boolean actResult1;
+        boolean actResult2;
         //When
-        actResult = testCollector.addFigure(myShape);
-        actResult = actResult && testCollector.getCollection().size()==1;
+        actResult1 = testCollector.addFigure(myShape);
+        actResult2 = testCollector.getCollection().size()==1;
         System.out.println("Test case addFigure with "+ expResult
-                + " as expected and " + actResult + " as actual output");
+                + " as expected and " + actResult1 + " and " + actResult2
+                + " as actual outputs");
         //Then
-        Assert.assertTrue(expResult == actResult);
+        Assert.assertTrue(expResult == actResult1);
+        Assert.assertTrue(expResult == actResult2);
     }
     @Test
     public void testCaseShowFigures()
@@ -64,14 +67,17 @@ public class ShapeCollectorTestSuite
         ShapeCollector testCollector = new ShapeCollector();
         Shape myShape = new Triangle(3,4);
         boolean expResult = true;
-        boolean actResult;
+        boolean actResult1;
+        boolean actResult2;
         //When
         testCollector.addFigure(myShape);
-        actResult = testCollector.removeFigure(testCollector.getFigure(0));
-        actResult = actResult && testCollector.getCollection().size()==0;
+        actResult1 = testCollector.removeFigure(testCollector.getFigure(0));
+        actResult2 = testCollector.getCollection().size()==0;
         System.out.println("Test case removeFigure with "+ expResult
-                + " as expected and " + actResult + " as actual output");
+                + " as expected and " + actResult1 + " and " + actResult2
+                + " as actual outputs");
         //Then
-        Assert.assertTrue(expResult == actResult);
+        Assert.assertTrue(expResult == actResult1);
+        Assert.assertTrue(expResult == actResult2);
     }
 }

@@ -2,7 +2,7 @@ package com.kodilla.testing.shape;
 
 public class Circle implements Shape
 {
-    private double circleRadius;
+    final private double circleRadius;
 
     public Circle(double circleRadius)
     {

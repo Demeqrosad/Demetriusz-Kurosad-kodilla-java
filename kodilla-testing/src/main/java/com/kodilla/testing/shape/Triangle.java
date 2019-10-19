@@ -2,8 +2,8 @@ package com.kodilla.testing.shape;
 
 public class Triangle implements Shape
 {
-    private double triangleBase;
-    private double triangleHeight;
+    final private double triangleBase;
+    final private double triangleHeight;
 
     public Triangle(double triangleBase, double triangleHeight)
     {
