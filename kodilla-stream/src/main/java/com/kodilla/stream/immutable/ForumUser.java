@@ -1,23 +1,39 @@
 package com.kodilla.stream.immutable;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public final class ForumUser
 {
     private final String username;
     private final String realName;
+    private final List<ForumUser> friends;
+    private final Date birthDate;
 
-    public ForumUser(final String username, final String realName)
+    public ForumUser(final String username, final String realName,
+                     final ArrayList<ForumUser> friends, final Date birthDate)
     {
         this.username = username;
         this.realName = realName;
+        this.friends = friends;
+        this.birthDate = birthDate;
     }
 
     public String getUsername()
     {
         return this.username;
     }
-
     public String getRealName()
     {
         return this.realName;
+    }
+    public List<ForumUser> getFriends()
+    {
+        return friends;
+    }
+    public Date getBirthDate()
+    {
+        return birthDate;
     }
 }
