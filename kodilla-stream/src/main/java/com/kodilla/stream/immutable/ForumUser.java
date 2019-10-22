@@ -1,5 +1,6 @@
 package com.kodilla.stream.immutable;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,10 +10,10 @@ public final class ForumUser
     private final String username;
     private final String realName;
     private final List<ForumUser> friends;
-    private final Date birthDate;
+    private final LocalDate birthDate;
 
     public ForumUser(final String username, final String realName,
-                     final ArrayList<ForumUser> friends, final Date birthDate)
+                     final ArrayList<ForumUser> friends, final LocalDate birthDate)
     {
         this.username = username;
         this.realName = realName;
@@ -30,10 +31,10 @@ public final class ForumUser
     }
     public List<ForumUser> getFriends()
     {
-        return friends;
+        return new ArrayList<>(this.friends);
     }
-    public Date getBirthDate()
+    public LocalDate getBirthDate()
     {
-        return birthDate;
+        return LocalDate.parse(this.birthDate.toString());
     }
 }
