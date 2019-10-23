@@ -5,9 +5,9 @@ import java.util.List;
 
 public class BookLibrary
 {
-    LibraryDatabase libraryDatabase;
+    private final LibraryDatabase libraryDatabase;
 
-    public BookLibrary(LibraryDatabase libraryDatabase)
+    public BookLibrary(final LibraryDatabase libraryDatabase)
     {
         this.libraryDatabase = libraryDatabase;
     }
