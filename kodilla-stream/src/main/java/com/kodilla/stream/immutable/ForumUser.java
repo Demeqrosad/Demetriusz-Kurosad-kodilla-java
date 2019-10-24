@@ -17,7 +17,7 @@ public final class ForumUser
     {
         this.username = username;
         this.realName = realName;
-        this.friends = friends;
+        this.friends = new ArrayList<>(friends);
         this.birthDate = birthDate;
     }
 
