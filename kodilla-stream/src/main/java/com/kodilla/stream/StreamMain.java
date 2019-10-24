@@ -17,7 +17,7 @@ public class StreamMain
                 .filter(forumUser -> forumUser.getUserPostsNumber() >= 1)
                 .collect(Collectors.toMap(ForumUser::getUserID, forumUser -> forumUser));
         myForumUserList.entrySet().stream()
-                .map(Map.Entry::getValue)
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);
     }
 }
