@@ -4,9 +4,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class BoardTestSuite
 {
@@ -83,8 +86,10 @@ public class BoardTestSuite
         //Then
         Assert.assertEquals(3, project.getTaskLists().size());
     }
+
     @Test
-    public void testAddTaskListFindUsersTasks() {
+    public void testAddTaskListFindUsersTasks()
+    {
         //Given
         Board project = prepareTestData();
         //When
@@ -98,8 +103,10 @@ public class BoardTestSuite
         Assert.assertEquals(user, tasks.get(0).getAssignedUser());
         Assert.assertEquals(user, tasks.get(1).getAssignedUser());
     }
+
     @Test
-    public void testAddTaskListFindOutdatedTasks() {
+    public void testAddTaskListFindOutdatedTasks()
+    {
         //Given
         Board project = prepareTestData();
 
@@ -117,8 +124,10 @@ public class BoardTestSuite
         Assert.assertEquals(1, tasks.size());
         Assert.assertEquals("HQLs for analysis", tasks.get(0).getTitle());
     }
+
     @Test
-    public void testAddTaskListFindLongTasks() {
+    public void testAddTaskListFindLongTasks()
+    {
         //Given
         Board project = prepareTestData();
 
@@ -134,5 +143,41 @@ public class BoardTestSuite
 
         //Then
         Assert.assertEquals(2, longTasks);
+    }
+
+    @Test
+    public void testAddTaskListAverageWorkingOnTask()
+    {
+        //Given
+        Board project = prepareTestData();
+        Long actResult;
+        Long expResult = 10L;
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        long actResultSum = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated().until(LocalDate.now(), ChronoUnit.DAYS))
+                .reduce(0L, (sum, current) -> sum + current);
+        System.out.println(actResultSum);
+        long actResultQuantity = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated().until(LocalDate.now(), ChronoUnit.DAYS))
+                .count();
+        if (actResultQuantity == 0)
+        {
+            actResult = 0L;
+        }
+        else
+        {
+            actResult = actResultSum/actResultQuantity;
+        }
+        System.out.println(actResult);
+        //Then
+        Assert.assertEquals(expResult, actResult);
+        Assert.assertTrue(actResultQuantity == 3L);
+        Assert.assertTrue(actResultSum == 30L);
     }
 }
