@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -179,5 +180,26 @@ public class BoardTestSuite
         Assert.assertEquals(expResult, actResult);
         Assert.assertTrue(actResultQuantity == 3L);
         Assert.assertTrue(actResultSum == 30L);
+    }
+    @Test
+    public void testAddTaskListAverageWorkingOnTaskWithIntStream()
+    {
+        //Given
+        Board project = prepareTestData();
+        OptionalDouble actResult;
+        OptionalDouble expResult = OptionalDouble.of(10);
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        actResult = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .mapToLong(t -> t.getCreated().until(LocalDate.now(), ChronoUnit.DAYS))
+                .mapToInt(ls -> (int) ls)
+                .average();
+        System.out.println(actResult);
+        System.out.println(expResult);
+        //Then
+        Assert.assertEquals(expResult, actResult);
     }
 }
