@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class FileReader
 {
-    public void readFile() throws SecurityException
+    public void readFile() throws FileReaderException
     {
         ClassLoader classLoader = FileReader.class.getClassLoader();
         File file = new File(classLoader.getResource("file/names.txt").getFile());
@@ -22,7 +22,11 @@ public class FileReader
         }
         catch (IOException e)
         {
-            System.out.println("Exception");
+            throw new FileReaderException();
+        }
+        finally
+        {
+            System.out.println("Finally");
         }
     }
 }
