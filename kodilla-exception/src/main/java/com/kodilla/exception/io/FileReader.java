@@ -1,21 +1,26 @@
 package com.kodilla.exception.io;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.ClassLoader;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class FileReader
 {
     public void readFile() throws SecurityException
     {
+        ClassLoader classLoader = FileReader.class.getClassLoader();
+        File file = new File(classLoader.getResource("file/names.txt").getFile());
+        Path path = Paths.get(file.getPath());
         try
         {
-            ClassLoader classLoader = FileReader.class.getClassLoader();
-            URL resource = classLoader.getResource("file/names.txt");
-            System.out.println(resource);
-            //File file = new File(classLoader.getResource("file/names.txt").getFile());
-            //System.out.println(file.getPath());
+            Stream<String> fileLines = Files.lines(path);
+            fileLines.forEach(System.out::println);
         }
-        catch (SecurityException e)
+        catch (IOException e)
         {
             System.out.println("Exception");
         }
