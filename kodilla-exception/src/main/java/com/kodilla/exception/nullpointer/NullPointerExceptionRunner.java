@@ -12,8 +12,7 @@ public class NullPointerExceptionRunner
         }
         catch (MessageNotSentException e)
         {
-            System.out.println("Message is not send," +
-                    "but my program still running very well!");
+            System.out.println(e.getMessage());
         }
         System.out.println("Processing other logic!");
     }
