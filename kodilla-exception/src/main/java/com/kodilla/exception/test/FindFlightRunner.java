@@ -21,7 +21,7 @@ public class FindFlightRunner
         }
         catch (RouteNotFoundException e)
         {
-            System.out.println(e.getMessage());
+            System.out.println(myFlight.getArrivalAirport() + "? " + e.getMessage());
         }
     }
 }
