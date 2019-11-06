@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-public class Licence implements Product
+public final class Licence implements Product
 {
     private final String productName;
 

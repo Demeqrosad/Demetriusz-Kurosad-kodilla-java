@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-public class OnlineShopUser implements Customer
+public final class OnlineShopUser implements Customer
 {
     private final String firstName;
     private final String lastName;
