@@ -16,9 +16,8 @@ public class OrderProcessor
         for(SubOrder subOrder: this.subOrders)
         {
             String classToCreate = "com.kodilla.good.patterns.food2door." + subOrder.getVendor() + "Checkout";
-            Object checkout = ObjectCreator.create(classToCreate);
-            VendorCheckout vendorCheckout = (VendorCheckout) checkout;
-            if(vendorCheckout.process())
+            VendorCheckout checkout = VendorCheckoutCreator.create(classToCreate);
+            if(checkout.process())
             {
                 System.out.println(subOrder + " has been confirmed.");
             }

@@ -36,19 +36,15 @@ public final class FlightDatabase
 
     public List<Flight> getFlightsFromCity(final String fromCity)
     {
-        List<Flight> resultList = new ArrayList<>();
-        resultList = this.flights.stream()
-                .filter(f->f.getDepartureCity().equals(fromCity))
+        return this.flights.stream()
+                .filter(f -> f.getDepartureCity().equals(fromCity))
                 .collect(Collectors.toList());
-        return resultList;
     }
 
     public List<Flight> getFlightsToCity(final String toCity)
     {
-        List<Flight> resultList = new ArrayList<>();
-        resultList = this.flights.stream()
-                .filter(f->f.getArrivalCity().equals(toCity))
+        return this.flights.stream()
+                .filter(f -> f.getArrivalCity().equals(toCity))
                 .collect(Collectors.toList());
-        return resultList;
     }
 }

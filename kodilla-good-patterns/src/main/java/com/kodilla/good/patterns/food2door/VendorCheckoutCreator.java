@@ -1,8 +1,8 @@
 package com.kodilla.good.patterns.food2door;
 
-public class ObjectCreator
+public class VendorCheckoutCreator
 {
-    public static Object create(String className)
+    public static VendorCheckout create(String className)
     {
         Object resultObject = null;
         try
@@ -14,6 +14,6 @@ public class ObjectCreator
         {
             System.out.println(e);
         }
-        return resultObject;
+        return (VendorCheckout) resultObject;
     }
 }
