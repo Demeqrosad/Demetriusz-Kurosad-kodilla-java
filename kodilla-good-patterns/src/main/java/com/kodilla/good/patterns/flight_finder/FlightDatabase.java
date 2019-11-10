@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.flight_finder;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +26,10 @@ public final class FlightDatabase
         this.flights.add(new PrivateFlight("Kraków", "Gdańsk"));
         this.flights.add(new PrivateFlight("Kraków", "Poznań"));
         this.flights.add(new PrivateFlight("Wrocław", "Warszawa"));
+        this.flights.add(new PrivateFlight("Gdańsk", "Szczecin"));
+        this.flights.add(new PrivateFlight("Szczecin", "Kraków"));
+        this.flights.add(new PrivateFlight("Katowice", "Poznań"));
+        this.flights.add(new PrivateFlight("Katowice", "Kraków"));
     }
 
     public Set<Flight> getFlights()
@@ -36,7 +39,7 @@ public final class FlightDatabase
 
     public List<Flight> getFlightsFromCity(final String fromCity)
     {
-        List<Flight> resultList = new ArrayList<>();
+        List<Flight> resultList;
         resultList = this.flights.stream()
                 .filter(f->f.getDepartureCity().equals(fromCity))
                 .collect(Collectors.toList());
@@ -45,7 +48,7 @@ public final class FlightDatabase
 
     public List<Flight> getFlightsToCity(final String toCity)
     {
-        List<Flight> resultList = new ArrayList<>();
+        List<Flight> resultList;
         resultList = this.flights.stream()
                 .filter(f->f.getArrivalCity().equals(toCity))
                 .collect(Collectors.toList());

@@ -2,11 +2,18 @@ package com.kodilla.good.patterns.flight_finder;
 
 public class FlightFinderDisplay
 {
-    public static void displayDirect(Journey myJourney)
-    {
-        FlightDatabase flights = new FlightDatabase();
-        FlightFinder flightFinder = new FlightFinder(flights, myJourney);
+    FlightDatabase flightDatabase = new FlightDatabase();
+    FlightFinder flightFinder;
+    Journey myJourney;
 
+    public FlightFinderDisplay(Journey myJourney)
+    {
+        this.flightFinder = new FlightFinder(this.flightDatabase, myJourney);
+        this.myJourney = myJourney;
+    }
+
+    public void displayDirect()
+    {
         System.out.println("\nDirect flights:\n");
         if (flightFinder.getDirectFlights().size() > 0)
         {
@@ -19,15 +26,13 @@ public class FlightFinderDisplay
         }
     }
 
-    public static void displayConnecting(Journey myJourney)
+    public void displayConnecting(int numberOfChanges)
     {
-        FlightDatabase flights = new FlightDatabase();
-        FlightFinder flightFinder = new FlightFinder(flights, myJourney);
 
         System.out.println("\nConnecting flights:\n");
-        if(flightFinder.getConnectingFlights().size()>0)
+        if(flightFinder.getFlightsWithChanges(numberOfChanges).size()>0)
         {
-            flightFinder.getConnectingFlights().stream()
+            flightFinder.getFlightsWithChanges(numberOfChanges).stream()
                     .forEach(System.out::println);
         }
         else
@@ -36,14 +41,12 @@ public class FlightFinderDisplay
         }
     }
 
-    public static void displayDepartures(String airport)
+    public void displayDepartures(String airport)
     {
-        FlightDatabase flights = new FlightDatabase();
-
         System.out.println("\nDepartures from " + airport +":\n");
-        if(flights.getFlightsFromCity(airport).size()>0)
+        if(this.flightDatabase.getFlightsFromCity(airport).size()>0)
         {
-            flights.getFlightsFromCity(airport).stream()
+            this.flightDatabase.getFlightsFromCity(airport).stream()
                     .forEach(System.out::println);
         }
         else
@@ -52,14 +55,12 @@ public class FlightFinderDisplay
         }
     }
 
-    public static void displayArrivals(String airport)
+    public void displayArrivals(String airport)
     {
-        FlightDatabase flights = new FlightDatabase();
-
         System.out.println("\nArrivals to " + airport +":\n");
-        if(flights.getFlightsToCity(airport).size()>0)
+        if(this.flightDatabase.getFlightsToCity(airport).size()>0)
         {
-            flights.getFlightsToCity(airport).stream()
+            this.flightDatabase.getFlightsToCity(airport).stream()
                     .forEach(System.out::println);
         }
         else

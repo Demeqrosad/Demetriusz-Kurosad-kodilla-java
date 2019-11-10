@@ -55,6 +55,6 @@ public final class PrivateFlight implements Flight
     @Override
     public String toString()
     {
-        return "Flight from " + this.departureCity + " to " + this.arrivalCity + ".";
+        return this.departureCity + " -> " + this.arrivalCity;
     }
 }

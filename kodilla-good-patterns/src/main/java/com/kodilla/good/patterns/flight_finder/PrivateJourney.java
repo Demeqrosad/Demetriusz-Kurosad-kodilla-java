@@ -1,26 +1,66 @@
 package com.kodilla.good.patterns.flight_finder;
 
+import java.util.*;
+
 public final class PrivateJourney implements Journey
 {
-    private final String initialCity;
-    private final String destinationCity;
+    private final LinkedList<Flight> journeyPlan;
 
-    public PrivateJourney(final String initialCity, final String destinationCity)
+    public PrivateJourney(final LinkedList<Flight> journeyPlan)
     {
-        this.initialCity = initialCity;
-        this.destinationCity = destinationCity;
+        this.journeyPlan = journeyPlan;
     }
 
     @Override
-    public String getInitialCity()
+    public String getInitialCity() throws NoSuchElementException
     {
-        return this.initialCity;
+        try
+        {
+            return this.journeyPlan.getFirst().getDepartureCity();
+        }
+        catch (NoSuchElementException e)
+        {
+            return "";
+        }
     }
 
     @Override
-    public String getDestinationCity()
+    public String getDestinationCity() throws NoSuchElementException
     {
-        return this.destinationCity;
+        try
+        {
+            return this.journeyPlan.getLast().getArrivalCity();
+        }
+        catch (NoSuchElementException e)
+        {
+            return "";
+        }
+
+    }
+
+    @Override
+    public boolean isLooped()
+    {
+        Set<String> listOfCities = new HashSet<>();
+        for(Flight flight:this.journeyPlan)
+        {
+            listOfCities.add(flight.getDepartureCity());
+            listOfCities.add(flight.getArrivalCity());
+        }
+        if(listOfCities.size()==this.journeyPlan.size()+1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    @Override
+    public LinkedList<Flight> getFlights()
+    {
+        return new LinkedList<>(this.journeyPlan);
     }
 
     @Override
@@ -30,31 +70,39 @@ public final class PrivateJourney implements Journey
         {
             return true;
         }
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || getClass() != o.getClass())
         {
             return false;
         }
 
         PrivateJourney that = (PrivateJourney) o;
 
-        if (!this.getInitialCity().equals(that.getInitialCity()))
-        {
-            return false;
-        }
-        return this.getDestinationCity().equals(that.getDestinationCity());
+        return journeyPlan != null ? journeyPlan.equals(that.journeyPlan) : that.journeyPlan == null;
     }
 
     @Override
     public int hashCode()
     {
-        int result = this.getInitialCity().hashCode();
-        result = 31 * result + this.getDestinationCity().hashCode();
-        return result;
+        return journeyPlan != null ? journeyPlan.hashCode() : 0;
     }
 
     @Override
-    public String toString()
+    public String toString() throws NoSuchElementException
     {
-        return "Journey from " + this.initialCity + " to " + this.destinationCity + ".";
+        try
+        {
+            String result =  this.journeyPlan.getFirst().getDepartureCity();
+            Iterator<Flight> flightIterator = this.journeyPlan.iterator();
+            while(flightIterator.hasNext())
+            {
+                result = result + " -> " + flightIterator.next().getArrivalCity();
+            }
+            return result;
+        }
+        catch (NoSuchElementException e)
+        {
+            return "";
+        }
+
     }
 }
