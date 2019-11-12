@@ -28,24 +28,25 @@ public final class FlightDatabase
     public boolean findFlight(Flight flight) throws RouteNotFoundException
     {
         Map<String, Boolean> flightsFromAirport = new HashMap<>();
+        String myArrivalAirport = flight.getArrivalAirport();
+        String myDepartureAirport = flight.getDepartureAirport();
         this.flights.stream()
                 .forEach(f -> flightsFromAirport.put(f.getArrivalAirport(),
-                        f.getDepartureAirport().equals(flight.getDepartureAirport())));
-        if(flightsFromAirport.entrySet().stream()
-                .filter(k->k.getKey().equals(flight.getArrivalAirport()))
-                .count() == 0)
+                        f.getDepartureAirport().equals(myDepartureAirport)));
+        if(flightsFromAirport.containsKey(myArrivalAirport))
         {
-            throw new RouteNotFoundException("There is no way to get there!");
-        }
-        else if(flightsFromAirport.entrySet().stream()
-                .filter(k->k.getKey().equals(flight.getArrivalAirport()))
-                .filter(v->v.getValue()).count()>0)
-        {
-            return true;
+            if(flightsFromAirport.get(myArrivalAirport))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            return false;
+            throw new RouteNotFoundException("There is no way to get there!");
         }
     }
 }
