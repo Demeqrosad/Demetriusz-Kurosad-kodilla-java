@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class TasksStatus
 {
-    public static Set<Task> executed = new HashSet<>();
+    private static Set<Task> executed = new HashSet<>();
 
     public static void execute(Task task)
     {
