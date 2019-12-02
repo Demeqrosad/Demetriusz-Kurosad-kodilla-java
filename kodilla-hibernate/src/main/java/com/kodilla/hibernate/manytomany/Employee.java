@@ -6,67 +6,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "EMPLOYEES")
+@Table(name = "Employees")
 public class Employee
 {
-    private int id;
-    private String firstname;
-    private String lastname;
+    private int employeeID;
+    private String firstName;
+    private String lastName;
     private List<Company> companies = new ArrayList<>();
 
     public Employee()
     {
     }
 
-    public Employee(String firstname, String lastname)
+    public Employee(String firstName, String lastName)
     {
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "EMPLOYEE_ID", unique = true)
-    public int getId()
+    @Column(name = "employeeID")
+    public int getEmployeeID()
     {
-        return id;
+        return this.employeeID;
     }
 
     @NotNull
-    @Column(name = "FIRSTNAME")
-    public String getFirstname()
+    @Column(name = "firsName")
+    public String getFirstName()
     {
-        return firstname;
+        return this.firstName;
     }
 
     @NotNull
-    @Column(name = "LASTNAME")
-    public String getLastname()
+    @Column(name = "lastName")
+    public String getLastName()
     {
-        return lastname;
+        return this.lastName;
     }
 
-    private void setId(int id)
+    private void setEmployeeID(int employeeID)
     {
-        this.id = id;
+        this.employeeID = employeeID;
     }
 
-    private void setFirstname(String firstname)
+    private void setFirstName(String firstName)
     {
-        this.firstname = firstname;
+        this.firstName = firstName;
     }
 
-    private void setLastname(String lastname)
+    private void setLastName(String lastName)
     {
-        this.lastname = lastname;
+        this.lastName = lastName;
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "JOIN_COMPANY_EMPLOYEE",
-            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "COMPANY_ID", referencedColumnName = "COMPANY_ID")}
+            name = "JoinCompanyEmployee",
+            joinColumns = {@JoinColumn(name = "employeeID", referencedColumnName = "employeeID")},
+            inverseJoinColumns = {@JoinColumn(name = "companyID", referencedColumnName = "companyID")}
     )
     public List<Company> getCompanies()
     {

@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CompanyDaoTestSuite
 {
     @Autowired
-    CompanyDao companyDao;
+    private CompanyDao companyDAO;
 
     @Test
     public void testSaveManyToMany()
@@ -41,12 +41,12 @@ public class CompanyDaoTestSuite
         lindaKovalsky.getCompanies().add(greyMatter);
 
         //When
-        companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
-        companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(greyMatter);
-        int greyMatterId = greyMatter.getId();
+        companyDAO.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getCompanyID();
+        companyDAO.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getCompanyID();
+        companyDAO.save(greyMatter);
+        int greyMatterId = greyMatter.getCompanyID();
 
         //Then
         Assert.assertNotEquals(0, softwareMachineId);
@@ -56,9 +56,9 @@ public class CompanyDaoTestSuite
         //CleanUp
         try
         {
-            companyDao.deleteById(softwareMachineId);
-            companyDao.deleteById(dataMaestersId);
-            companyDao.deleteById(greyMatterId);
+            companyDAO.deleteById(softwareMachineId);
+            companyDAO.deleteById(dataMaestersId);
+            companyDAO.deleteById(greyMatterId);
         }
         catch (Exception e)
         {
