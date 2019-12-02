@@ -27,7 +27,7 @@ public class Task
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "taskID", unique = true)
+    @Column(name = "taskID")
     public int getTaskID()
     {
         return taskID;

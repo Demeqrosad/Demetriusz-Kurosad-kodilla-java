@@ -30,13 +30,13 @@ public class TaskList
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "taskListID", unique = true)
+    @Column(name = "taskListID")
     public int getTaskListID()
     {
         return this.taskListID;
     }
 
-    public void setTaskListID(int taskListID)
+    private void setTaskListID(int taskListID)
     {
         this.taskListID = taskListID;
     }
@@ -47,7 +47,7 @@ public class TaskList
         return this.taskListName;
     }
 
-    public void setTaskListName(String taskListName)
+    private void setTaskListName(String taskListName)
     {
         this.taskListName = taskListName;
     }
@@ -58,7 +58,7 @@ public class TaskList
         return this.taskListDescription;
     }
 
-    public void setTaskListDescription(String taskDescription)
+    private void setTaskListDescription(String taskDescription)
     {
         this.taskListDescription = taskDescription;
     }
