@@ -1,6 +1,13 @@
 package com.kodilla.hibernate.invoice;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -23,12 +30,6 @@ public class Item
     {
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
-        this.itemValue = getProductPrice().multiply(BigDecimal.valueOf(getProductQuantity()));
-    }
-
-    public void count()
-    {
-        setItemValue(getProductPrice().multiply(new BigDecimal(getProductQuantity())));
     }
 
     @Id
@@ -62,7 +63,7 @@ public class Item
     @Column(name = "itemValue")
     public BigDecimal getItemValue()
     {
-        return this.itemValue;
+        return getProductPrice().multiply(BigDecimal.valueOf(getProductQuantity()));
     }
 
     @ManyToOne
@@ -72,7 +73,7 @@ public class Item
         return invoice;
     }
 
-    private void setItemID(int itemID)
+    public void setItemID(int itemID)
     {
         this.itemID = itemID;
     }
@@ -82,12 +83,12 @@ public class Item
         this.product = product;
     }
 
-    private void setProductPrice(BigDecimal productPrice)
+    public void setProductPrice(BigDecimal productPrice)
     {
         this.productPrice = productPrice;
     }
 
-    private void setProductQuantity(int productQuantity)
+    public void setProductQuantity(int productQuantity)
     {
         this.productQuantity = productQuantity;
     }
