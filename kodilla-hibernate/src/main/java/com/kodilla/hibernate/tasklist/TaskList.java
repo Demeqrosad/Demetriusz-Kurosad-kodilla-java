@@ -27,6 +27,7 @@ public class TaskList
         this.taskListName = taskListName;
         this.taskListDescription = taskListDescription;
     }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -36,7 +37,7 @@ public class TaskList
         return this.taskListID;
     }
 
-    private void setTaskListID(int taskListID)
+    public void setTaskListID(int taskListID)
     {
         this.taskListID = taskListID;
     }
@@ -47,7 +48,7 @@ public class TaskList
         return this.taskListName;
     }
 
-    private void setTaskListName(String taskListName)
+    public void setTaskListName(String taskListName)
     {
         this.taskListName = taskListName;
     }
@@ -58,7 +59,7 @@ public class TaskList
         return this.taskListDescription;
     }
 
-    private void setTaskListDescription(String taskDescription)
+    public void setTaskListDescription(String taskDescription)
     {
         this.taskListDescription = taskDescription;
     }
