@@ -5,47 +5,54 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveBy3LettersOfName",
+        query = "SELECT * FROM Companies" +
+                " WHERE LEFT(companyName, 3) = :BEGINNING",
+        resultClass = Company.class
+)
+
 @Entity
-@Table(name = "COMPANIES")
+@Table(name = "Companies")
 public class Company
 {
-    private int id;
-    private String name;
+    private int companyID;
+    private String companyName;
     private List<Employee> employees = new ArrayList<>();
 
     public Company()
     {
     }
 
-    public Company(String name)
+    public Company(String companyName)
     {
-        this.name = name;
+        this.companyName = companyName;
     }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "COMPANY_ID", unique = true)
-    public int getId()
+    @Column(name = "companyID")
+    public int getCompanyID()
     {
-        return id;
+        return this.companyID;
     }
 
     @NotNull
-    @Column(name = "COMPANY_NAME")
-    public String getName()
+    @Column(name = "companyName")
+    public String getCompanyName()
     {
-        return name;
+        return this.companyName;
     }
 
-    private void setId(int id)
+    private void setCompanyID(int companyID)
     {
-        this.id = id;
+        this.companyID = companyID;
     }
 
-    private void setName(String name)
+    private void setCompanyName(String companyName)
     {
-        this.name = name;
+        this.companyName = companyName;
     }
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")

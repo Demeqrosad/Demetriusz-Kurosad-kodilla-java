@@ -6,6 +6,27 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Task.retrieveLongTasks",
+                query = "FROM Task WHERE taskDuration > 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveShortTasks",
+                query = "FROM Task WHERE taskDuration <= 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveTasksWithDurationLongerThan",
+                query = "FROM Task WHERE taskDuration > :DURATION"
+        )
+})
+@NamedNativeQuery(
+        name = "Task.retrieveTasksWithEnoughTime",
+        query = "SELECT * FROM Tasks" +
+        " WHERE DATEDIFF(DATE_ADD(taskCreatedDate, INTERVAL taskDuration DAY), NOW()) > 5",
+        resultClass = Task.class
+)
+
 @Entity
 @Table(name = "Tasks")
 public class Task
