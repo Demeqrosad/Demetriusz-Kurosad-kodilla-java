@@ -63,6 +63,7 @@ public class InvoiceDAOTestSuite
         itemDAO.save(item4);
         int actInvoiceID = invoice.getInvoiceID();
         actNumberOfItems = itemDAO.count() - actNumberOfItems;
+        //BigDecimal actItemValueOfItem1 = itemDAO.retrieveItemValueByItemID(item1.getItemID());
         //Then
         Assert.assertNotEquals(0, actInvoiceID);
         Assert.assertEquals(4, actNumberOfItems);

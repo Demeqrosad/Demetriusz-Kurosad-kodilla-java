@@ -7,9 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+
+/*@NamedNativeQueries({
+        @NamedNativeQuery(name = "Item.retrieveItemValueByItemID",
+                query = "SELECT ItemValue FROM Items I WHERE I.ItemID = :ITEM_ID",
+                resultClass = BigDecimal.class)
+})*/
 
 @Entity
 @Table(name = "Items")
