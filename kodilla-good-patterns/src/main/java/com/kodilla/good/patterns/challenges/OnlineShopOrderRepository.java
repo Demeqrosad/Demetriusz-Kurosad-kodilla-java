@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges;
 
 import java.time.LocalDate;
 
-public class OnlineShopOrderRepository implements OrderRepository
+public final class OnlineShopOrderRepository implements OrderRepository
 {
     private final String orderRepositoryType;
 
@@ -20,7 +20,7 @@ public class OnlineShopOrderRepository implements OrderRepository
     }
     public String getOrderRepositoryType()
     {
-        return orderRepositoryType;
+        return this.orderRepositoryType;
     }
 
 

@@ -2,14 +2,9 @@ package com.kodilla.good.patterns.challenges;
 
 import java.time.LocalDate;
 
-public class OnlineShopOrderService implements OrderService
+public final class OnlineShopOrderService implements OrderService
 {
-    private final String orderServiceType;
-
-    public OnlineShopOrderService()
-    {
-        this.orderServiceType = "Online shop order service";
-    }
+    private final String orderServiceType = "Online shop order service";
 
     @Override
     public boolean order(Customer user, Product product, LocalDate date)
@@ -21,6 +16,6 @@ public class OnlineShopOrderService implements OrderService
 
     public String getOrderServiceType()
     {
-        return orderServiceType;
+        return this.orderServiceType;
     }
 }

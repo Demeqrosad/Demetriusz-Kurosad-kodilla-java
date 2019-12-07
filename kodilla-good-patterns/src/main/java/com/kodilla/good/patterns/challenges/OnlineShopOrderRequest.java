@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges;
 
 import java.time.LocalDate;
 
-public class OnlineShopOrderRequest implements OrderRequest
+public final class OnlineShopOrderRequest implements OrderRequest
 {
     private final OnlineShopUser user;
     private final Product product;

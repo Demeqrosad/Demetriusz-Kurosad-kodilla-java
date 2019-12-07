@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-public class WebsiteService implements InformationService
+public final class WebsiteService implements InformationService
 {
     private final String informationServiceType;
 

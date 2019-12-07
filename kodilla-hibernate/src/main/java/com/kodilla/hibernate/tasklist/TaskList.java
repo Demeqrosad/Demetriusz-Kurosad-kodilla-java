@@ -26,10 +26,11 @@ public class TaskList
         this.taskListName = taskListName;
         this.taskListDescription = taskListDescription;
     }
+
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "taskListID", unique = true)
+    @Column(name = "taskListID")
     public int getTaskListID()
     {
         return this.taskListID;

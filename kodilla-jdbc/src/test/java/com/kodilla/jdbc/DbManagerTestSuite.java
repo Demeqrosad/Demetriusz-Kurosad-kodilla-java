@@ -49,25 +49,24 @@ public class DbManagerTestSuite
     {
         //Given
         DbManager dbManager = DbManager.getInstance();
-        int expResult = 1;
-        //When
         String sqlQuery = "SELECT CONCAT(U.firstName, \" \", U.lastName) AS user, COUNT(P.postID) AS numberOfPosts\n" +
                 "FROM Users U INNER JOIN Posts P ON U.userID = P.userID\n" +
                 "GROUP BY U.userID\n" +
                 "HAVING COUNT(P.postID) > 1\n" +
                 "ORDER BY U.lastName, U.firstName;";
         Statement statement = dbManager.getConnection().createStatement();
+        //When
         ResultSet rs = statement.executeQuery(sqlQuery);
-        //Then
-        int actResult = 0;
+        int actResultSetSize = 0;
         while (rs.next())
         {
             System.out.println(rs.getString("user") + ", " +
                     rs.getInt("numberOfPosts"));
-            actResult++;
+            actResultSetSize++;
         }
         rs.close();
         statement.close();
-        Assert.assertEquals(expResult, actResult);
+        //Then
+        Assert.assertEquals(1, actResultSetSize);
     }
 }

@@ -12,7 +12,7 @@ public final class PrivateJourney implements Journey
     }
 
     @Override
-    public String getInitialCity() throws NoSuchElementException
+    public String getInitialCity()
     {
         try
         {
@@ -25,7 +25,7 @@ public final class PrivateJourney implements Journey
     }
 
     @Override
-    public String getDestinationCity() throws NoSuchElementException
+    public String getDestinationCity()
     {
         try
         {
@@ -87,7 +87,7 @@ public final class PrivateJourney implements Journey
     }
 
     @Override
-    public String toString() throws NoSuchElementException
+    public String toString()
     {
         try
         {

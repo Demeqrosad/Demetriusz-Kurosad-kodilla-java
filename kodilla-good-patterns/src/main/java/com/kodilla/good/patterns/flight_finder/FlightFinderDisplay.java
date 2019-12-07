@@ -2,9 +2,9 @@ package com.kodilla.good.patterns.flight_finder;
 
 public class FlightFinderDisplay
 {
-    FlightDatabase flightDatabase = new FlightDatabase();
-    FlightFinder flightFinder;
-    Journey myJourney;
+    private FlightDatabase flightDatabase = new FlightDatabase();
+    private FlightFinder flightFinder;
+    private Journey myJourney;
 
     public FlightFinderDisplay(Journey myJourney)
     {
