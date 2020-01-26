@@ -9,6 +9,14 @@ import java.util.List;
         name = "Employee.retrieveByLastName",
         query = "FROM Employee WHERE lastName = :LASTNAME"
 )
+
+@NamedNativeQuery(
+        name = "Employee.retrieveByAnyPartOfName",
+        query = "SELECT * FROM Employees" +
+                " WHERE firstName LIKE :CONTAINS" +
+                " OR lastName LIKE :CONTAINS",
+        resultClass = Employee.class
+)
 @Entity
 @Table(name = "Employees")
 public class Employee
@@ -38,7 +46,7 @@ public class Employee
     }
 
     @NotNull
-    @Column(name = "firsName")
+    @Column(name = "firstName")
     public String getFirstName()
     {
         return this.firstName;

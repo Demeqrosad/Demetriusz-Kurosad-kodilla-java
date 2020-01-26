@@ -15,4 +15,7 @@ public interface CompanyDao extends CrudRepository<Company, Integer>
 {
     @Query(nativeQuery = true)
     public List<Company> retrieveBy3LettersOfName(@Param("BEGINNING") String beginning);
+
+    @Query(nativeQuery = true)
+    public List<Company> retrieveByAnyPartOfName(@Param("CONTAINS") String contains);
 }
